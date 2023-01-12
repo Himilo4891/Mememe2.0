@@ -6,19 +6,22 @@ class TableViewController: UIViewController, UITabBarControllerDelegate, UITable
     
     var memes = [Meme]()
     // MARK: Life Cycle
-      override func viewDidLoad() {
-          super.viewDidLoad()
-//          setupTableView()
-          setupNavigationBar()
-          memes = getMemes()
-//          tableView.reloadData()
-      }
+    @IBOutlet weak var tableView: UITableView!
+       
+       // MARK: Life Cycle
+       override func viewDidLoad() {
+           super.viewDidLoad()
+           setupTableView()
+           setupNavigationBar()
+           memes = getMemes()
+           tableView.reloadData()
+       }
       
-      override func viewWillAppear(_ animated: Bool) {
-          setupNavigationBar()
-          memes = getMemes()
-//          self.tableView.reloadData()
-      }
+    override func viewWillAppear(_ animated: Bool) {
+           setupNavigationBar()
+           memes = getMemes()
+           tableView.reloadData()
+       }
       
       // Retrive saved memes
       private func getMemes() -> [Meme] {
@@ -34,11 +37,11 @@ class TableViewController: UIViewController, UITabBarControllerDelegate, UITable
           navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(createMeme))
       }
       
-      // Add the setup for the table view
-//      private func setupTableView() {
-//          tableView.delegate = self
-//          tableView.delegate = self
-//      }
+    // Add the setup for the table view
+      private func setupTableView() {
+          tableView.delegate = self
+          tableView.delegate = self
+      }
       
      // Call the create meme view controller
       @objc func createMeme() {
@@ -64,6 +67,7 @@ class TableViewController: UIViewController, UITabBarControllerDelegate, UITable
           cell.memeTitle.text = meme.name
           cell.memeImage?.image = UIImage(named: meme.imageName)
           
+          
           return cell
       }
       
@@ -77,7 +81,7 @@ class TableViewController: UIViewController, UITabBarControllerDelegate, UITable
           // Populate view controller with data from the selected item
          
           let meme = memes[(indexPath as NSIndexPath).row]
-          
+         
           //Present the view controller using navigation
           self.navigationController!.pushViewController(detailController, animated: true)
           

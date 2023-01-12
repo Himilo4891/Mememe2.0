@@ -7,7 +7,7 @@ class CollectionViewController: UIViewController {
     
     // MARK: Outlets
     
-   
+    @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     
     
@@ -15,6 +15,7 @@ class CollectionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        setupCollectionView()
         setupFlowLayout()
         setupNavigationBar()
     }
@@ -22,6 +23,7 @@ class CollectionViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         setupNavigationBar()
         memes = getMemes()
+        collectionView.reloadData()
         
     }
     
@@ -82,9 +84,11 @@ func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath:
             let meme = memes[(indexPath as NSIndexPath).row]
             
             //Set the image
-//            cell.imageView.image = Meme.memes
+//          cell.imageView.image = Meme.memedImage
             cell.labelView.text = meme.name
             cell.imageView?.image = UIImage(named: meme.imageName)
+//    cell.imageView.image = memes[indexPath.item].imageName
+
             return cell
             
         }

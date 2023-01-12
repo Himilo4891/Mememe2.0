@@ -16,8 +16,10 @@ class DetailViewController: UIViewController {
 //    @IBOutlet weak var memeLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+         
     }
+
+        
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
 //        memeLabel.text = self.meme.name
