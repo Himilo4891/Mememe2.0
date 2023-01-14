@@ -121,7 +121,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,
            return true
        }
        //Text in text field specifications
-       let memeTextAttributes: [NSAttributedString.Key: Any] = [
+    var meme: Meme!
+        let table = TableViewController()
+        let collection = CollectionViewController()
+        let memeTextAttributes: [NSAttributedString.Key: Any] = [
            NSAttributedString.Key.strokeColor: UIColor.black,
            NSAttributedString.Key.foregroundColor:UIColor.white,
            NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
@@ -155,13 +158,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,
            NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
        }
        
-       func save() {
-           // Create and save the meme
-           _ = Meme(topText: topTextField.text!,
-                           bottomText: bottomTextField.text!,
-                           originalImage:imagePickerView.image!,
-                           memedImage: generateMemedImage())
-       }
+    func save() {
+        // Create and save the meme
+        let meme = Meme(topText: topTextField.text!,
+                        bottomText: bottomTextField.text!,
+                        originalImage:imagePickerView.image!,
+                        memedImage: generateMemedImage())
+        
+    }
 
     struct Meme {
            let topText:String
@@ -172,16 +176,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,
        
        //Created final MEME
        func generateMemedImage() -> UIImage {
-           //Hide tab and nav bars
            self.navigationController?.navigationBar.isHidden = true;
 
            self.tabBarController?.tabBar.isHidden = true;
-           // Render view to an image
            UIGraphicsBeginImageContext(self.view.frame.size)
            view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
            let memedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
            UIGraphicsEndImageContext()
-           //Show tab and nav bars
            self.navigationController?.navigationBar.isHidden = false;
            self.tabBarController?.tabBar.isHidden = false;
 

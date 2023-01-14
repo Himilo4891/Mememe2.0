@@ -11,20 +11,13 @@ class DetailViewController: UIViewController {
     var meme: Meme!
     
     
+    
     @IBOutlet weak var memeImage: UIImageView!
     
-//    @IBOutlet weak var memeLabel: UILabel!
-    override func viewDidLoad() {
-        super.viewDidLoad()
-         
-    }
-
-        
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-//        memeLabel.text = self.meme.name
-        memeImage.image = UIImage(named: meme.imageName)
-        self.tabBarController?.tabBar.isHidden = true
+        super.viewWillAppear(animated)
+        
+        self.memeImage.image = meme.memedImage
     }
     
 }

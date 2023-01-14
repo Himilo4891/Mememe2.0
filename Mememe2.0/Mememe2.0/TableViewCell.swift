@@ -16,7 +16,7 @@ class TableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
             super.awakeFromNib()
-            // Initialization code
+        memeImage.layer.cornerRadius = 8
         }
 
         override func setSelected(_ selected: Bool, animated: Bool) {
